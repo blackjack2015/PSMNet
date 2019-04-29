@@ -1,0 +1,11 @@
+2019-04-29 11:07:57,471 [finetune.py:87] INFO Number of model parameters: 5224768
+2019-04-29 11:08:12,691 [finetune.py:165] INFO Iter 0 3-px error in val = 99.611
+2019-04-29 11:08:14,780 [finetune.py:165] INFO Iter 1 3-px error in val = 99.069
+2019-04-29 11:08:16,800 [finetune.py:165] INFO Iter 2 3-px error in val = 99.205
+2019-04-29 11:08:18,844 [finetune.py:165] INFO Iter 3 3-px error in val = 99.244
+2019-04-29 11:08:20,876 [finetune.py:165] INFO Iter 4 3-px error in val = 99.058
+2019-04-29 11:08:20,877 [finetune.py:168] INFO epoch 0 total 3-px error in val = 99.237
+2019-04-29 11:08:20,877 [finetune.py:171] INFO MAX epoch 0 total test error = 99.237
+2019-04-29 11:08:20,877 [finetune.py:219] INFO full finetune time = 0.01 HR
+2019-04-29 11:08:20,877 [finetune.py:220] INFO 0
+2019-04-29 11:08:20,877 [finetune.py:221] INFO 99.2373046784
