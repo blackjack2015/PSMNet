@@ -38,7 +38,7 @@ args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
 # set gpu id used
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2"
 
 torch.manual_seed(args.seed)
 if args.cuda:
@@ -48,11 +48,11 @@ all_left_img, all_right_img, all_left_disp, test_left_img, test_right_img, test_
 
 TrainImgLoader = torch.utils.data.DataLoader(
          DA.myImageFloder(all_left_img,all_right_img,all_left_disp, True), 
-         batch_size= 12, shuffle= True, num_workers= 8, drop_last=False)
+         batch_size= 9, shuffle= True, num_workers= 8, drop_last=False)
 
 TestImgLoader = torch.utils.data.DataLoader(
          DA.myImageFloder(test_left_img,test_right_img,test_left_disp, False), 
-         batch_size= 8, shuffle= False, num_workers= 4, drop_last=False)
+         batch_size= 9, shuffle= False, num_workers= 4, drop_last=False)
 
 
 if args.model == 'stackhourglass':
@@ -63,7 +63,7 @@ else:
     print('no model')
 
 if args.cuda:
-    model = nn.DataParallel(model)
+    model = nn.DataParallel(model, device_ids=[0,1,2])
     model.cuda()
 
 if args.loadmodel is not None:

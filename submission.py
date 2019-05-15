@@ -28,6 +28,8 @@ parser.add_argument('--datapath', default='/media/jiaren/ImageNet/data_scene_flo
                     help='select model')
 parser.add_argument('--loadmodel', default=None,
                     help='loading model')
+parser.add_argument('--savepath', default='results/',
+                    help='path to save the results.')
 parser.add_argument('--model', default='stackhourglass',
                     help='select model')
 parser.add_argument('--maxdisp', type=int, default=192,
@@ -38,6 +40,9 @@ parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
+
+if not os.path.exists(args.savepath):
+    os.makedirs(args.savepath)
 
 torch.manual_seed(args.seed)
 if args.cuda:
@@ -109,7 +114,7 @@ def main():
        top_pad   = 384-imgL_o.shape[0]
        left_pad  = 1248-imgL_o.shape[1]
        img = pred_disp[top_pad:,:-left_pad]
-       skimage.io.imsave(test_left_img[inx].split('/')[-1],(img*256).astype('uint16'))
+       skimage.io.imsave(os.path.join(args.savepath, test_left_img[inx].split('/')[-1]),(img*256).astype('uint16'))
 
 if __name__ == '__main__':
    main()
